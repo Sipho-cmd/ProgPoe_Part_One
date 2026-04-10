@@ -7,8 +7,7 @@ public class Main {
         Registration registration = new Registration();
         registration.Register();
 
-        //test
-        //test again
+
         //login attempt
         Scanner s = new Scanner(System.in);
 
