@@ -51,7 +51,7 @@ public class Main {
         System.out.println("Welcome "
         + registration.firstName + " "
         + registration.lastName
-        + " It is great to see you againn");
+        + " It is great to see you again");
 
         s.close();
     }
