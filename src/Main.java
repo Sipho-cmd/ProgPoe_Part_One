@@ -3,11 +3,12 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args){
 
-        // Registration
+        // Register the user
         Registration registration = new Registration();
         registration.Register();
 
-        // Login object
+        // creates the login object
+        // Stores the registered user date for comparison
         Login login = new Login(
                 registration.userName,
                 registration.passWord,
@@ -16,27 +17,41 @@ public class Main {
 
         Scanner s = new Scanner(System.in);
 
-        boolean success = false;
-
-        while (!success) {
+        // Username login loop
+        // It will keep asking until the username is entered
+        while (true) {
             System.out.println("Please login in: ");
 
             System.out.println("Enter Username: ");
             String loginUser = s.nextLine();
 
+            if (loginUser.equals(registration.userName)) {
+                System.out.println("Username correct");
+                break;
+            } else {
+                System.out.println("Username incorrect. Try again...");
+            }
+        }
+
+        // Password login loop
+        // It will keep asking until the password is entered
+        while (true) {
             System.out.println("Enter Password: ");
             String loginPass = s.nextLine();
 
-            String result = login.loginUser(loginUser, loginPass);
-            System.out.println(result);
-
-            // Check if login is successful
-            if (!result.equals("Login successful")) {
-                success = true;
+            if (loginPass.equals(registration.passWord)) {
+                System.out.println("Password correct");
+                break;
             } else {
-                System.out.println("Try again...");
+                System.out.println("Password incorrect. Try again...");
             }
         }
+
+        // The success message
+        System.out.println("Welcome "
+        + registration.firstName + " "
+        + registration.lastName
+        + " It is great to see you again");
 
         s.close();
     }

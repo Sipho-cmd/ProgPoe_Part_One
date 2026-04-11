@@ -1,20 +1,22 @@
 import java.util.Scanner;
 
 //Declaration
+
 public class Registration {
     String userName;
     String passWord;
     String firstName;
     String lastName;
     String phoneNumber;
-    int minLength = 8; //The minimum password length
 
-    //userName validation
+    // UserName validation
+    // Must contain "_" and be =< 5 characters
     public boolean checkUserName(String userName) {
         return userName.length() <= 5 && userName.contains("_");
     }
 
-    //passWord validation
+    // PassWord validation
+    // Must be 8 characters, Uppercase, Digit, Special character
     public boolean checkpassWord(String passWord) {
         if (passWord.length() < 8) return false;
 
@@ -22,6 +24,7 @@ public class Registration {
         boolean hasSpecial = false;
         boolean hasDigit = false;
 
+        // Loop through each character if they were met
         for (char ch : passWord.toCharArray()) {
             if (Character.isUpperCase(ch)) hasUppercase = true;
             if (Character.isLetterOrDigit(ch)) hasSpecial = true;
@@ -31,10 +34,14 @@ public class Registration {
         return hasUppercase && hasSpecial && hasDigit;
     }
 
+    // Validating the South African phone number format
+    // Must start with "+27 or 0" and have 10 digits
     public boolean checkPhoneNo(String phoneNumber) {
         return phoneNumber.matches("(\\+27|0)[0-9]{9}");
     }
 
+    // Registration process
+    // Collects and validates the users input
     public void Register() {
         Scanner s = new Scanner(System.in);
 
@@ -44,6 +51,7 @@ public class Registration {
         System.out.print("Enter your last name: ");
         lastName = s.nextLine();
 
+        // Username loop (it will repeat until its valid)
         while (true) {
             System.out.print("Enter your username: ");
             userName = s.nextLine();
@@ -53,10 +61,11 @@ public class Registration {
                 break;
 
             } else {
-                System.out.println("Username must contain '_' and should be less than 5 characters long");
+                System.out.println("Username invalid (must contain '_' and should be less than 5 characters long)");
             }
         }
 
+        // Password loop (repeats until its valid)
         while (true) {
             System.out.print("Enter your password: ");
             passWord = s.nextLine();
@@ -66,10 +75,12 @@ public class Registration {
                 break;
 
             } else {
-                System.out.println("Password must be at least 8 characters long, contain an uppercase, digit ,and special character");
+                System.out.println("Password invalid " +
+                        "(must be at least 8 characters long, contain an uppercase, digit ,and special character)");
             }
         }
 
+        // Phone number loop (repeats until its valid)
         while (true) {
             System.out.print("Enter your Phone Number: ");
             phoneNumber = s.nextLine();
@@ -79,7 +90,7 @@ public class Registration {
                 break;
 
             } else {
-                System.out.println("Phone number must contain '+27 or 0'");
+                System.out.println("Phone number invalid (must contain '+27 or 0')");
             }
         }
     }
